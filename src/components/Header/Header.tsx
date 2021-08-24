@@ -1,14 +1,10 @@
-import React from "react";
+import { FC } from "react";
 import "./styles.scss";
 
-export const Header = () => {
+export const Header: FC = () => {
   return (
     <header className="header">
-      <img
-        src="/assets/images/hacker-news.svg"
-        alt="Hacker news logo"
-        className="header__logo"
-      />
+      <h1 className="header__logo">HACKER NEWS</h1>
     </header>
   );
 };

@@ -1,0 +1,34 @@
+@mixin link-style {
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.75;
+  letter-spacing: normal;
+  text-decoration: none;
+}
+
+.navitem {
+  width: 98px;
+  height: 31px;
+  border-radius: 2px;
+  border: solid 1px #d6d6d6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &--active {
+    @extend .navitem;
+    border: solid 1px #1797ff;
+  }
+
+  &__link {
+    @include link-style;
+    color: #606060;
+
+    &--active {
+      @include link-style;
+      color: #1797ff;
+    }
+  }
+}
