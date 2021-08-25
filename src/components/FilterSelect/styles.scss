@@ -1,0 +1,13 @@
+.filterSelect {
+  width: 240px;
+  height: 32px;
+  border-radius: 4px;
+  background-color: #fff;
+  margin: 63px 0 38px 150px;
+}
+
+.react-select__control {
+  &__control {
+    border-color: #2e2e2e !important;
+  }
+}

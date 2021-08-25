@@ -1,0 +1,23 @@
+.react-select__option {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  &__img {
+    margin-right: 13px;
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  &__text {
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.57;
+    letter-spacing: normal;
+    color: #343434;
+  }
+}

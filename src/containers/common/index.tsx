@@ -5,8 +5,12 @@ import { FC, ReactNode } from "react";
 
 type CommonContainerProps = {
   children: ReactNode;
+  className: string;
 };
 
-export const CommonContainer: FC<CommonContainerProps> = ({ children }) => {
-  return <section className="commonContainer">{children}</section>;
+export const CommonContainer: FC<CommonContainerProps> = ({
+  children,
+  className,
+}) => {
+  return <section className={className}>{children}</section>;
 };
