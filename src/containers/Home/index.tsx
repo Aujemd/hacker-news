@@ -1,5 +1,5 @@
 //React
-import { FC, useEffect } from "react";
+import { FC } from "react";
 
 //Components
 import { CommonContainer } from "../common/index";
@@ -14,22 +14,25 @@ import { filterSelectOptions } from "../../utils/FilterSelectOptions";
 
 //hooks
 import { useData } from "../../hooks/useData";
-const mockups = [{}, {}, {}, {}, {}, {}];
 
 export const Index: FC = () => {
-  const [data, loading] = useData("reactjs", 0);
-
-  useEffect(() => {
-    console.log(data, loading);
-  }, [loading]);
+  const { data } = useData("reactjs", 0);
 
   return (
     <>
       <FilterSelect options={filterSelectOptions} />
       <CommonContainer className="commonContainer">
-        {mockups.map((index) => (
-          <Card />
-        ))}
+        {data.map(
+          ({ objectID, author, story_url, story_title, created_at }) => (
+            <Card
+              key={objectID}
+              author={author}
+              story_url={story_url}
+              story_title={story_title}
+              created_at={created_at}
+            />
+          )
+        )}
       </CommonContainer>
     </>
   );

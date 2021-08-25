@@ -1,7 +1,26 @@
+//react
+import TimeAgo from "javascript-time-ago";
+import { FC } from "react";
+
 //styles
 import "./styles.scss";
 
-export const Card = () => {
+//types
+type CardProps = {
+  author: string;
+  created_at: string;
+  story_title: string;
+  story_url: string;
+};
+
+export const Card: FC<CardProps> = ({
+  author,
+  created_at,
+  story_title,
+  story_url,
+}) => {
+  const timeAgo = new TimeAgo("en-US");
+
   return (
     <article className="card">
       <div className="card__text__container">
@@ -11,11 +30,12 @@ export const Card = () => {
             className="card__clock"
             alt="clock"
           />
-          <p className="card__timeago">1 hour ago by author</p>
+          <p className="card__timeago">
+            {timeAgo.format(new Date(created_at))}
+            by <span>{author}</span>
+          </p>
         </div>
-        <p className="card__text">
-          Realize for React for Visualizing State ﬂow and component hierarchy
-        </p>
+        <p className="card__text">{story_title} </p>
       </div>
 
       <div className="card__like__container">

@@ -14,7 +14,7 @@ export const Navbar: FC = () => {
     <nav>
       <ul className="navbar__list">
         {RouterItems.map(({ to, label }) => (
-          <Navitem to={to} label={label} activeOnlyWhenExact />
+          <Navitem key={label} to={to} label={label} activeOnlyWhenExact />
         ))}
       </ul>
     </nav>
