@@ -1,5 +1,5 @@
 .card {
-  min-width: 280px;
+  width: 90%;
   max-width: 548px;
   opacity: 0.8;
   border-radius: 6px;
@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
 
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: 375px) {
     flex-direction: column;
     border: none;
   }
@@ -48,7 +48,7 @@
       flex-wrap: wrap;
       width: 440px;
       margin: auto 0 auto 26px;
-      @media screen and (max-width: 320px) {
+      @media screen and (max-width: 375px) {
         margin: 0;
         width: 90%;
         margin: 0 auto;
@@ -76,7 +76,7 @@
       height: 90px;
       border-radius: 6px;
       background: #eeeeee;
-      @media screen and (max-width: 320px) {
+      @media screen and (max-width: 375px) {
         width: 100%;
         height: auto;
         padding: 2% 0;

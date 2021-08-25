@@ -1,7 +1,10 @@
 .commonContainer {
-  margin: 0 150px;
   display: flex;
   flex-wrap: wrap;
   gap: 30px 40px;
   justify-content: center;
+
+  @media screen and (min-width: 1440px) {
+    margin: 0 150px;
+  }
 }
