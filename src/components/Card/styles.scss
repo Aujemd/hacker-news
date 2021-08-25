@@ -1,12 +1,21 @@
 .card {
+  min-width: 280px;
   max-width: 548px;
-  height: 90px;
   opacity: 0.8;
   border-radius: 6px;
   border: solid 1px #979797;
   background-color: #fff;
   display: flex;
   justify-content: space-between;
+
+  @media screen and (max-width: 320px) {
+    flex-direction: column;
+    border: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    height: 90px;
+  }
   &__clock {
     width: 16px;
     height: 16px;
@@ -39,6 +48,12 @@
       flex-wrap: wrap;
       width: 440px;
       margin: auto 0 auto 26px;
+      @media screen and (max-width: 320px) {
+        margin: 0;
+        width: 90%;
+        margin: 0 auto;
+        padding: 5%;
+      }
     }
     margin: 0;
     font-size: 14px;
@@ -61,6 +76,11 @@
       height: 90px;
       border-radius: 6px;
       background: #eeeeee;
+      @media screen and (max-width: 320px) {
+        width: 100%;
+        height: auto;
+        padding: 2% 0;
+      }
     }
 
     &__container > .card__like {

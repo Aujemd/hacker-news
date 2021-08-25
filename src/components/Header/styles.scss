@@ -16,5 +16,11 @@
     color: #3b3b3b;
     margin: 44px 0 44px 150px;
     display: inline-block;
+
+    @media screen and (max-width: 320px) {
+      margin: 44px 0;
+      text-align: center;
+      width: 100%;
+    }
   }
 }
