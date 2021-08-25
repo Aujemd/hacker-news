@@ -1,5 +1,5 @@
 //React
-import { FC } from "react";
+import { FC, useEffect } from "react";
 
 //Components
 import { CommonContainer } from "../common/index";
@@ -11,14 +11,23 @@ import "./styles.scss";
 
 //Utils
 import { filterSelectOptions } from "../../utils/FilterSelectOptions";
+
+//hooks
+import { useData } from "../../hooks/useData";
 const mockups = [{}, {}, {}, {}, {}, {}];
 
 export const Index: FC = () => {
+  const [data, loading] = useData("reactjs", 0);
+
+  useEffect(() => {
+    console.log(data, loading);
+  }, [loading]);
+
   return (
     <>
       <FilterSelect options={filterSelectOptions} />
       <CommonContainer className="commonContainer">
-        {mockups.map(() => (
+        {mockups.map((index) => (
           <Card />
         ))}
       </CommonContainer>
