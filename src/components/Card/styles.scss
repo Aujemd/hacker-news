@@ -8,6 +8,10 @@
   display: flex;
   justify-content: space-between;
 
+  &:hover {
+    opacity: 0.4;
+  }
+
   @media screen and (max-width: 767px) {
     flex-direction: column;
     border: none;
