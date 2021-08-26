@@ -32,7 +32,7 @@ export const Card = (post: Post) => {
     isLiked(post, savedFaves)
   );
 
-  const { created_at, author, story_title } = post;
+  const { created_at, author, story_title, story_url } = post;
 
   const timeAgo = new TimeAgo("en-US");
 
@@ -48,7 +48,10 @@ export const Card = (post: Post) => {
 
   return (
     <article className="card">
-      <div
+      <a
+        href={story_url}
+        target="_blank"
+        rel="noreferrer"
         className="card__text__container"
         onClick={() => removeSavedFave(post)}
       >
@@ -64,7 +67,7 @@ export const Card = (post: Post) => {
           </p>
         </div>
         <p className="card__text">{story_title} </p>
-      </div>
+      </a>
 
       <div className="card__like__container" onClick={handleClick}>
         <img
