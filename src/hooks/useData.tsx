@@ -8,7 +8,7 @@ import { getData } from "../services/data.service";
 import { formatData } from "../utils/FormatData";
 
 //types
-type Post = {
+export type Post = {
   author: string;
   created_at: string;
   story_title: string;

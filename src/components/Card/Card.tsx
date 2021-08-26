@@ -1,29 +1,57 @@
-//react
+//React
+import { useState } from "react";
+
+//third part library
 import TimeAgo from "javascript-time-ago";
-import { FC } from "react";
 
 //styles
 import "./styles.scss";
 
-//types
-type CardProps = {
-  author: string;
-  created_at: string;
-  story_title: string;
-  story_url: string;
-};
+//Context
+import { useSavedFaves } from "../../context/SavedFavesContext";
 
-export const Card: FC<CardProps> = ({
-  author,
-  created_at,
-  story_title,
-  story_url,
-}) => {
+//types
+import { Post } from "../../hooks/useData";
+
+//methods
+const isLiked = (post: Post, savedFaves: Array<Post>) => {
+  const isLiked = savedFaves.find(
+    (item: Post) => item.objectID === post.objectID
+  );
+
+  if (isLiked) {
+    return true;
+  }
+
+  return false;
+};
+export const Card = (post: Post) => {
+  const { savedFaves, addSavedFave, removeSavedFave } = useSavedFaves();
+
+  const [isCurrentLiked, setIsCurrentLiked] = useState<boolean>(
+    isLiked(post, savedFaves)
+  );
+
+  const { created_at, author, story_title } = post;
+
   const timeAgo = new TimeAgo("en-US");
+
+  const handleClick = () => {
+    if (isCurrentLiked) {
+      removeSavedFave(post);
+      setIsCurrentLiked(false);
+    } else {
+      addSavedFave(post);
+      setIsCurrentLiked(true);
+    }
+  };
 
   return (
     <article className="card">
-      <div className="card__text__container">
+      <div
+        className="card__text__container"
+        onClick={() => removeSavedFave(post)}
+      >
         <div className="card__timeago__container">
           <img
             src="assets/images/clock.svg"
@@ -38,8 +66,12 @@ export const Card: FC<CardProps> = ({
         <p className="card__text">{story_title} </p>
       </div>
 
-      <div className="card__like__container">
-        <img src="assets/images/like.svg" className="card__like" alt="like" />
+      <div className="card__like__container" onClick={handleClick}>
+        <img
+          src={`assets/images/${isCurrentLiked ? "like" : "unlike"}.svg`}
+          className="card__like"
+          alt="like"
+        />
       </div>
     </article>
   );

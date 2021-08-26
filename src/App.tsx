@@ -6,11 +6,16 @@ import { Router } from "../src/router/router";
 //Components
 import { Header } from "./components/Header/Header";
 
+//Context
+import SavedFavesContext from "./context/SavedFavesContext";
+
 function App() {
   return (
     <>
       <Header />
-      <Router />
+      <SavedFavesContext>
+        <Router />
+      </SavedFavesContext>
     </>
   );
 }

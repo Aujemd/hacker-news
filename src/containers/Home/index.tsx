@@ -30,6 +30,7 @@ export const Index: FC = () => {
               story_url={story_url}
               story_title={story_title}
               created_at={created_at}
+              objectID={objectID}
             />
           )
         )}
