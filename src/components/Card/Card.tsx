@@ -78,7 +78,7 @@ export const Card = (post: Post) => {
           />
           <p className="card__timeago">
             {timeAgo.format(new Date(created_at))}
-            by <span>{author}</span>
+            <span>{` by ${author}`}</span>
           </p>
         </div>
         <p className="card__text">{story_title} </p>
