@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 import { Post } from "../hooks/useData";
 
-type SavedFavesContextType = {
+type ApplicationContextType = {
   children: JSX.Element;
 };
 
-type UseSavedFaves = {
+type UseApplicationContext = {
   savedFaves: Array<Post>;
   savedFilter: string;
-  addSavedFave: Function;
-  removeSavedFave: Function;
+  addFave: Function;
+  removeFave: Function;
   saveFilter: Function;
 };
 
-const Context = React.createContext<UseSavedFaves>({
+const Context = React.createContext<UseApplicationContext>({
   savedFaves: [],
   savedFilter: "",
-  addSavedFave: () => {},
-  removeSavedFave: () => {},
+  addFave: () => {},
+  removeFave: () => {},
   saveFilter: () => {},
 });
 
-const SavedFavesContext = ({ children }: SavedFavesContextType) => {
+const ApplicationContext = ({ children }: ApplicationContextType) => {
   const [savedFaves, setSavedFaves] = useState<Array<Post>>(
     window.localStorage.getItem("savedFaves") //@ts-ignore
       ? JSON.parse(window.localStorage.getItem("savedFaves"))
@@ -34,7 +34,8 @@ const SavedFavesContext = ({ children }: SavedFavesContextType) => {
       : ""
   );
 
-  const addSavedFave = (newFave: Post) => {
+  
+  const addFave = (newFave: Post) => {
     setSavedFaves((savedFaves) => {
       const newFaves = [...savedFaves, newFave];
       window.localStorage.setItem("savedFaves", JSON.stringify(newFaves));
@@ -42,7 +43,7 @@ const SavedFavesContext = ({ children }: SavedFavesContextType) => {
     });
   };
 
-  const removeSavedFave = (faveToDelete: Post) => {
+  const removeFave = (faveToDelete: Post) => {
     setSavedFaves((savedFaves) => {
       const newFaves = savedFaves.filter(
         (fave) => fave.objectID !== faveToDelete.objectID
@@ -62,8 +63,8 @@ const SavedFavesContext = ({ children }: SavedFavesContextType) => {
       value={{
         savedFaves,
         savedFilter,
-        addSavedFave,
-        removeSavedFave,
+        addFave,
+        removeFave,
         saveFilter,
       }}
     >
@@ -72,8 +73,8 @@ const SavedFavesContext = ({ children }: SavedFavesContextType) => {
   );
 };
 
-export const useSavedFaves = (): UseSavedFaves => {
+export const useApplicationContext = (): UseApplicationContext => {
   return React.useContext(Context);
 };
 
-export default SavedFavesContext;
+export default ApplicationContext;

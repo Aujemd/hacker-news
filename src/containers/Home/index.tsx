@@ -13,9 +13,9 @@ import "./styles.scss";
 import { useData } from "../../hooks/useData";
 
 //context
-import { useSavedFaves } from "../../context/SavedFavesContext";
+import { useApplicationContext } from "../../context/ApplicationContext";
 export const Index: FC = () => {
-  const { savedFilter } = useSavedFaves();
+  const { savedFilter } = useApplicationContext();
 
   const { data } = useData(savedFilter, 0);
 

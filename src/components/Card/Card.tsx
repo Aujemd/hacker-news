@@ -8,7 +8,7 @@ import TimeAgo from "javascript-time-ago";
 import "./styles.scss";
 
 //Context
-import { useSavedFaves } from "../../context/SavedFavesContext";
+import { useApplicationContext } from "../../context/ApplicationContext";
 
 //types
 import { Post } from "../../hooks/useData";
@@ -26,7 +26,7 @@ const isLiked = (post: Post, savedFaves: Array<Post>) => {
   return false;
 };
 export const Card = (post: Post) => {
-  const { savedFaves, addSavedFave, removeSavedFave } = useSavedFaves();
+  const { savedFaves, addFave, removeFave } = useApplicationContext();
 
   const [isCurrentLiked, setIsCurrentLiked] = useState<boolean>(
     isLiked(post, savedFaves)
@@ -38,10 +38,10 @@ export const Card = (post: Post) => {
 
   const handleClick = () => {
     if (isCurrentLiked) {
-      removeSavedFave(post);
+      removeFave(post);
       setIsCurrentLiked(false);
     } else {
-      addSavedFave(post);
+      addFave(post);
       setIsCurrentLiked(true);
     }
   };
@@ -53,7 +53,7 @@ export const Card = (post: Post) => {
         target="_blank"
         rel="noreferrer"
         className="card__text__container"
-        onClick={() => removeSavedFave(post)}
+        onClick={() => removeFave(post)}
       >
         <div className="card__timeago__container">
           <img

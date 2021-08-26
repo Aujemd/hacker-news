@@ -5,7 +5,7 @@ import Select from "react-select";
 import "./styles.scss";
 
 //Context
-import { useSavedFaves } from "../../context/SavedFavesContext";
+import { useApplicationContext } from "../../context/ApplicationContext";
 
 //Utils
 import {
@@ -14,7 +14,7 @@ import {
 } from "../../utils/FilterSelectOptions";
 
 export const FilterSelect = () => {
-  const { savedFilter, saveFilter } = useSavedFaves();
+  const { savedFilter, saveFilter } = useApplicationContext();
 
   const handleChange = (e: any) => {
     saveFilter(e.value);

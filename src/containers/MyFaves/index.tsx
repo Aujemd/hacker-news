@@ -6,9 +6,9 @@ import { Card } from "../../components/Card/Card";
 import "./styles.scss";
 
 //Context
-import { useSavedFaves } from "../../context/SavedFavesContext";
+import { useApplicationContext } from "../../context/ApplicationContext";
 export const Index = () => {
-  const { savedFaves } = useSavedFaves();
+  const { savedFaves } = useApplicationContext();
 
   return (
     <>

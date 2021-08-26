@@ -7,15 +7,15 @@ import { Router } from "../src/router/router";
 import { Header } from "./components/Header/Header";
 
 //Context
-import SavedFavesContext from "./context/SavedFavesContext";
+import ApplicationContext from "./context/ApplicationContext";
 
 function App() {
   return (
     <>
       <Header />
-      <SavedFavesContext>
+      <ApplicationContext>
         <Router />
-      </SavedFavesContext>
+      </ApplicationContext>
     </>
   );
 }
