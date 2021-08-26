@@ -3,7 +3,7 @@ import { FilterSelectOption } from "../components/FilterSelectOption/FilterSelec
 
 export const filterSelectOptions = [
   {
-    value: "Angular",
+    value: "angular",
     label: (
       <FilterSelectOption
         label="Angular"
@@ -13,7 +13,7 @@ export const filterSelectOptions = [
     ),
   },
   {
-    value: "React",
+    value: "reactjs",
     label: (
       <FilterSelectOption
         label="React.js"
@@ -23,7 +23,7 @@ export const filterSelectOptions = [
     ),
   },
   {
-    value: "Vue",
+    value: "vuejs",
     label: (
       <FilterSelectOption
         label="Vue.js"
@@ -33,3 +33,16 @@ export const filterSelectOptions = [
     ),
   },
 ];
+
+export const getFilterSelectOption = (filter: string) => {
+  switch (filter) {
+    case "angular":
+      return filterSelectOptions[0];
+    case "reactjs":
+      return filterSelectOptions[1];
+    case "vuejs":
+      return filterSelectOptions[2];
+    default:
+      return null;
+  }
+};

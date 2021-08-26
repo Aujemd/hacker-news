@@ -1,27 +1,31 @@
-//React
-import { FC } from "react";
-
 //Components
 import Select from "react-select";
 
 //styles
 import "./styles.scss";
 
-//types
-type Option = {
-  value: string;
-  label: any;
-};
+//Context
+import { useSavedFaves } from "../../context/SavedFavesContext";
 
-type FilterSelectProps = {
-  options: Array<Option>;
-};
+//Utils
+import {
+  filterSelectOptions,
+  getFilterSelectOption,
+} from "../../utils/FilterSelectOptions";
 
-export const FilterSelect: FC<FilterSelectProps> = ({ options }) => {
+export const FilterSelect = () => {
+  const { savedFilter, saveFilter } = useSavedFaves();
+
+  const handleChange = (e: any) => {
+    saveFilter(e.value);
+  };
+
   return (
     <Select
+      value={getFilterSelectOption(savedFilter)}
+      onChange={handleChange}
       isSearchable={false}
-      options={options}
+      options={filterSelectOptions}
       className="filterSelect react-select__control"
       placeholder="Select Your News"
       classNamePrefix="react-select"

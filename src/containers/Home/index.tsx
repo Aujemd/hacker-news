@@ -9,18 +9,19 @@ import { FilterSelect } from "../../components/FilterSelect/FilterSelect";
 //styles
 import "./styles.scss";
 
-//Utils
-import { filterSelectOptions } from "../../utils/FilterSelectOptions";
-
 //hooks
 import { useData } from "../../hooks/useData";
 
+//context
+import { useSavedFaves } from "../../context/SavedFavesContext";
 export const Index: FC = () => {
-  const { data } = useData("reactjs", 0);
+  const { savedFilter } = useSavedFaves();
+
+  const { data } = useData(savedFilter, 0);
 
   return (
     <>
-      <FilterSelect options={filterSelectOptions} />
+      <FilterSelect />
       <CommonContainer className="commonContainer">
         {data.map(
           ({ objectID, author, story_url, story_title, created_at }) => (

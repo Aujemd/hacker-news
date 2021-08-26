@@ -7,14 +7,18 @@ type SavedFavesContextType = {
 
 type UseSavedFaves = {
   savedFaves: Array<Post>;
+  savedFilter: string;
   addSavedFave: Function;
   removeSavedFave: Function;
+  saveFilter: Function;
 };
 
 const Context = React.createContext<UseSavedFaves>({
   savedFaves: [],
+  savedFilter: "",
   addSavedFave: () => {},
   removeSavedFave: () => {},
+  saveFilter: () => {},
 });
 
 const SavedFavesContext = ({ children }: SavedFavesContextType) => {
@@ -22,6 +26,12 @@ const SavedFavesContext = ({ children }: SavedFavesContextType) => {
     window.localStorage.getItem("savedFaves") //@ts-ignore
       ? JSON.parse(window.localStorage.getItem("savedFaves"))
       : []
+  );
+
+  const [savedFilter, setSavedFilter] = useState<string>(
+    window.localStorage.getItem("savedFilter") //@ts-ignore
+      ? JSON.parse(window.localStorage.getItem("savedFilter"))
+      : ""
   );
 
   const addSavedFave = (newFave: Post) => {
@@ -42,8 +52,21 @@ const SavedFavesContext = ({ children }: SavedFavesContextType) => {
     });
   };
 
+  const saveFilter = (filter: string) => {
+    window.localStorage.setItem("savedFilter", JSON.stringify(filter));
+    setSavedFilter(filter);
+  };
+
   return (
-    <Context.Provider value={{ savedFaves, addSavedFave, removeSavedFave }}>
+    <Context.Provider
+      value={{
+        savedFaves,
+        savedFilter,
+        addSavedFave,
+        removeSavedFave,
+        saveFilter,
+      }}
+    >
       {children}
     </Context.Provider>
   );
