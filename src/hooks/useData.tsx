@@ -32,6 +32,7 @@ export const useData = (framework: string, page: number = 0) => {
     try {
       const { data, count } = await getData(framework, page);
       const cleanResponse = formatData(data);
+
       setData((prevData) => {
         return [...prevData, ...cleanResponse];
       });

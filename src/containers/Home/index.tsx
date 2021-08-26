@@ -1,10 +1,11 @@
 //React
-import { FC, useRef, useCallback, useState } from "react";
+import { FC, useRef, useCallback, useState, useEffect } from "react";
 
 //Components
 import { CommonContainer } from "../common/index";
 import { Card } from "../../components/Card/Card";
 import { FilterSelect } from "../../components/FilterSelect/FilterSelect";
+import { Loader } from "../../components/Loader/Loader";
 
 //Styles
 import "./styles.scss";
@@ -14,6 +15,9 @@ import { useData } from "../../hooks/useData";
 
 //Context
 import { useApplicationContext } from "../../context/ApplicationContext";
+
+//Utils
+import { ID } from "../../utils/Common";
 export const Index: FC = () => {
   //Local states
   const { savedFilter } = useApplicationContext();
@@ -44,6 +48,12 @@ export const Index: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [loading, hasMore]
   );
+
+  useEffect(() => {
+    if (data.length === 0) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  }, [data]);
   return (
     <>
       <FilterSelect />
@@ -52,7 +62,7 @@ export const Index: FC = () => {
           const { objectID, author, story_url, story_title, created_at } = post;
           if (data.length === index + 1) {
             return (
-              <span ref={lastPostElementRef} key={objectID}>
+              <span ref={lastPostElementRef} key={ID()} className="card--last">
                 <Card
                   author={author}
                   story_url={story_url}
@@ -65,7 +75,7 @@ export const Index: FC = () => {
           } else {
             return (
               <Card
-                key={objectID}
+                key={ID()}
                 author={author}
                 story_url={story_url}
                 story_title={story_title}
@@ -75,7 +85,7 @@ export const Index: FC = () => {
             );
           }
         })}
-        {<div>{loading && "Cargando ..."}</div>}
+        {loading && <Loader />}
       </CommonContainer>
     </>
   );
