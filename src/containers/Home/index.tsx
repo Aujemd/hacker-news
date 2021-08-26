@@ -23,9 +23,7 @@ export const Index: FC = () => {
   const { savedFilter } = useApplicationContext();
   const [page, setPage] = useState<number>(0);
   const { data, hasMore, loading } = useData(savedFilter, page);
-
   const observer = useRef(null) as any;
-
   const lastPostElementRef = useCallback(
     (node): void => {
       if (loading) {
@@ -49,11 +47,13 @@ export const Index: FC = () => {
     [loading, hasMore]
   );
 
+  //Lifecycle
   useEffect(() => {
     if (data.length === 0) {
       setPage((prevPage) => prevPage + 1);
     }
   }, [data]);
+
   return (
     <>
       <FilterSelect />
