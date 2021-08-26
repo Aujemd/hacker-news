@@ -1,3 +1,10 @@
+/**
+ * cleanData
+ * * Function to get Array of post without null fields
+ * @param data Data from formatData function
+ * @returns Clean data
+ */
+
 const cleanData = (data: Array<any>) => {
   return data.filter(
     ({ author, story_title, story_url, created_at, objectID }) =>
@@ -9,6 +16,12 @@ const cleanData = (data: Array<any>) => {
   );
 };
 
+/**
+ * formatData
+ * * Function to format a Array of post to get only required information
+ * @param data Data from Backend
+ * @returns Formated data
+ */
 export const formatData = (data: Array<any>) => {
   const cleanArray = cleanData(data);
 

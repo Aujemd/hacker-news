@@ -1,4 +1,4 @@
-//react
+//React
 import { useState, useEffect, useCallback } from "react";
 
 //Services
@@ -17,11 +17,16 @@ export type Post = {
 };
 
 export const useData = (framework: string, page: number = 0) => {
+  //Local States
   const [data, setData] = useState<Array<Post>>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
 
-  const fecthData = async () => {
+  /**
+   * fetchData
+   * * Function to request from backend the data
+   */
+  const fetchData = async () => {
     setLoading(true);
     try {
       const response = await getData(framework, page);
@@ -34,8 +39,9 @@ export const useData = (framework: string, page: number = 0) => {
     setLoading(false);
   };
 
-  const memoizedData = useCallback(fecthData, [framework, page]);
+  const memoizedData = useCallback(fetchData, [framework, page]);
 
+  //Component livecycle
   useEffect(() => {
     memoizedData();
   }, [memoizedData]);

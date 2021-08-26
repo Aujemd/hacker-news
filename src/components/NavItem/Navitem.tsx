@@ -4,8 +4,10 @@ import { FC } from "react";
 //Router
 import { Link, useRouteMatch } from "react-router-dom";
 
+//Styles
 import "./styles.scss";
 
+//Types
 type NavitemProps = {
   to: string;
   label: string;
@@ -17,6 +19,7 @@ export const Navitem: FC<NavitemProps> = ({
   label,
   activeOnlyWhenExact,
 }) => {
+  //Local states
   let match = useRouteMatch({
     path: to,
     exact: activeOnlyWhenExact,

@@ -1,6 +1,7 @@
-//components
+//Components
 import { FilterSelectOption } from "../components/FilterSelectOption/FilterSelectOption";
 
+//Constants
 export const filterSelectOptions = [
   {
     value: "angular",
@@ -34,7 +35,13 @@ export const filterSelectOptions = [
   },
 ];
 
-export const getFilterSelectOption = (filter: string) => {
+/**
+ * getFilterSelectOption
+ * * Function to get a filter select option
+ * @param filter Option of filter;
+ * @returns a Option of filter
+ */
+export const getFilterSelectOption = (filter: string): any => {
   switch (filter) {
     case "angular":
       return filterSelectOptions[0];

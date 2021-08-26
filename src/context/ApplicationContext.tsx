@@ -1,4 +1,7 @@
+//React
 import React, { useState } from "react";
+
+//Types
 import { Post } from "../hooks/useData";
 
 type ApplicationContextType = {
@@ -22,6 +25,7 @@ const Context = React.createContext<UseApplicationContext>({
 });
 
 const ApplicationContext = ({ children }: ApplicationContextType) => {
+  //Local states
   const [savedFaves, setSavedFaves] = useState<Array<Post>>(
     window.localStorage.getItem("savedFaves") //@ts-ignore
       ? JSON.parse(window.localStorage.getItem("savedFaves"))
@@ -34,8 +38,13 @@ const ApplicationContext = ({ children }: ApplicationContextType) => {
       : ""
   );
 
-  
-  const addFave = (newFave: Post) => {
+  //Methods
+  /**
+   * addFave
+   * * Add new fave post to context and localstorage
+   * @param newFave The fave to save
+   */
+  const addFave = (newFave: Post): void => {
     setSavedFaves((savedFaves) => {
       const newFaves = [...savedFaves, newFave];
       window.localStorage.setItem("savedFaves", JSON.stringify(newFaves));
@@ -43,7 +52,12 @@ const ApplicationContext = ({ children }: ApplicationContextType) => {
     });
   };
 
-  const removeFave = (faveToDelete: Post) => {
+  /**
+   * removeFave
+   * * Remove a fave post to context and localstorage
+   * @param faveToDelete the fave to delete
+   */
+  const removeFave = (faveToDelete: Post): void => {
     setSavedFaves((savedFaves) => {
       const newFaves = savedFaves.filter(
         (fave) => fave.objectID !== faveToDelete.objectID
@@ -53,7 +67,12 @@ const ApplicationContext = ({ children }: ApplicationContextType) => {
     });
   };
 
-  const saveFilter = (filter: string) => {
+  /**
+   * saveFilter
+   * * Save a filter in context and localstorage
+   * @param filter Filter to save ;
+   */
+  const saveFilter = (filter: string): void => {
     window.localStorage.setItem("savedFilter", JSON.stringify(filter));
     setSavedFilter(filter);
   };

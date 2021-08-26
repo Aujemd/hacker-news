@@ -1,7 +1,10 @@
+//React
+import { FC } from "react";
+
 //Components
 import Select from "react-select";
 
-//styles
+//Styles
 import "./styles.scss";
 
 //Context
@@ -13,10 +16,17 @@ import {
   getFilterSelectOption,
 } from "../../utils/FilterSelectOptions";
 
-export const FilterSelect = () => {
+export const FilterSelect: FC = () => {
+  //Local states
   const { savedFilter, saveFilter } = useApplicationContext();
 
-  const handleChange = (e: any) => {
+  //Methods
+  /**
+   * handleChange
+   * * Save the filter selected when select change
+   * @param e event from change of select
+   */
+  const handleChange = (e: any): void => {
     saveFilter(e.value);
   };
 

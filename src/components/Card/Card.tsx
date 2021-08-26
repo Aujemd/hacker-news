@@ -1,42 +1,57 @@
 //React
 import { useState } from "react";
 
-//third part library
+//Third part library
 import TimeAgo from "javascript-time-ago";
 
-//styles
+//Styles
 import "./styles.scss";
 
 //Context
 import { useApplicationContext } from "../../context/ApplicationContext";
 
-//types
+//Types
 import { Post } from "../../hooks/useData";
 
-//methods
-const isLiked = (post: Post, savedFaves: Array<Post>) => {
-  const isLiked = savedFaves.find(
-    (item: Post) => item.objectID === post.objectID
-  );
-
-  if (isLiked) {
-    return true;
-  }
-
-  return false;
-};
 export const Card = (post: Post) => {
+  //Local states
   const { savedFaves, addFave, removeFave } = useApplicationContext();
-
-  const [isCurrentLiked, setIsCurrentLiked] = useState<boolean>(
-    isLiked(post, savedFaves)
-  );
 
   const { created_at, author, story_title, story_url } = post;
 
   const timeAgo = new TimeAgo("en-US");
 
-  const handleClick = () => {
+  //Methods
+
+  /**
+   * isLiked
+   * * Function to know if a card was liked
+   * @param post The post to check
+   * @param savedFaves Post faves saved
+   * @returns the boolean if is liked true else false
+   */
+  const isLiked = (post: Post, savedFaves: Array<Post>): boolean => {
+    const isLiked = savedFaves.find(
+      (item: Post) => item.objectID === post.objectID
+    );
+
+    if (isLiked) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const [isCurrentLiked, setIsCurrentLiked] = useState<boolean>(
+    isLiked(post, savedFaves)
+  );
+
+  /**
+   * handleClick
+   * * Function to execute when a card is clicked
+   * Set states to when a card is clicked
+   */
+  const handleClick = (): void => {
     if (isCurrentLiked) {
       removeFave(post);
       setIsCurrentLiked(false);

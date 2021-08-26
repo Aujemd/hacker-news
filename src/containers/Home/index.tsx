@@ -6,17 +6,18 @@ import { CommonContainer } from "../common/index";
 import { Card } from "../../components/Card/Card";
 import { FilterSelect } from "../../components/FilterSelect/FilterSelect";
 
-//styles
+//Styles
 import "./styles.scss";
 
 //hooks
 import { useData } from "../../hooks/useData";
 
-//context
+//Context
 import { useApplicationContext } from "../../context/ApplicationContext";
-export const Index: FC = () => {
-  const { savedFilter } = useApplicationContext();
 
+export const Index: FC = () => {
+  //Local states
+  const { savedFilter } = useApplicationContext();
   const { data } = useData(savedFilter, 0);
 
   return (

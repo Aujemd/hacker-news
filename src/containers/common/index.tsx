@@ -1,8 +1,10 @@
+//React
+import { FC, ReactNode } from "react";
+
 //styles
 import "./styles.scss";
 
-import { FC, ReactNode } from "react";
-
+//Types
 type CommonContainerProps = {
   children: ReactNode;
   className: string;

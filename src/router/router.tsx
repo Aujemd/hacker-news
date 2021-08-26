@@ -1,3 +1,6 @@
+//React
+import { FC } from "react";
+
 //Router
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
@@ -8,7 +11,7 @@ import { Navbar } from "../components/Navbar/Navbar";
 import { MyFaves } from "../pages/MyFaves/myFaves";
 import { Home } from "../pages/Home/home";
 
-export const Router = () => {
+export const Router: FC = () => {
   return (
     <BrowserRouter>
       <Navbar />

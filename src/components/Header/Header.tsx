@@ -1,4 +1,7 @@
+//React
 import { FC } from "react";
+
+//Styles
 import "./styles.scss";
 
 export const Header: FC = () => {
