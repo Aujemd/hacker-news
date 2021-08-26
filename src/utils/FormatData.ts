@@ -33,6 +33,7 @@ export const formatData = (data: Array<any>) => {
         story_url,
         created_at,
         objectID,
+        
       };
     }
   );

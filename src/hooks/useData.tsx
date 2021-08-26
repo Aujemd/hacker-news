@@ -21,6 +21,7 @@ export const useData = (framework: string, page: number = 0) => {
   const [data, setData] = useState<Array<Post>>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const [hasMore, setHasMore] = useState<boolean>(false);
 
   /**
    * fetchData
@@ -29,9 +30,12 @@ export const useData = (framework: string, page: number = 0) => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await getData(framework, page);
-      const cleanResponse = formatData(response);
-      setData(cleanResponse);
+      const { data, count } = await getData(framework, page);
+      const cleanResponse = formatData(data);
+      setData((prevData) => {
+        return [...prevData, ...cleanResponse];
+      });
+      setHasMore(count);
     } catch (error) {
       setError(true);
     }
@@ -43,8 +47,12 @@ export const useData = (framework: string, page: number = 0) => {
 
   //Component livecycle
   useEffect(() => {
+    setData([]);
+  }, [framework]);
+
+  useEffect(() => {
     memoizedData();
   }, [memoizedData]);
 
-  return { data, loading, error };
+  return { data, loading, error, hasMore };
 };

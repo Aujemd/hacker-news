@@ -14,5 +14,10 @@ export const getData = (framework?: string, page: number = 0): Promise<any> => {
 
   return fetch(`${url}${query}`)
     .then((res) => res.json())
-    .then((res) => res.hits);
+    .then((res) => {
+      return {
+        data: res.hits,
+        count: res.nbHits,
+      };
+    });
 };
