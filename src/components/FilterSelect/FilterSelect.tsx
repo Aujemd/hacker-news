@@ -6,6 +6,7 @@ import Select from "react-select";
 
 //Styles
 import "./styles.scss";
+import { FilterSelectStyles } from "./styles";
 
 //Context
 import { useApplicationContext } from "../../context/ApplicationContext";
@@ -32,6 +33,7 @@ export const FilterSelect: FC = () => {
 
   return (
     <Select
+      styles={FilterSelectStyles}
       value={getFilterSelectOption(savedFilter)}
       onChange={handleChange}
       isSearchable={false}

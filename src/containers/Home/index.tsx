@@ -43,7 +43,6 @@ export const Index: FC = () => {
         observer.current.observe(node);
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [loading, hasMore]
   );
 
