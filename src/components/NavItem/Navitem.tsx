@@ -25,13 +25,8 @@ export const Navitem: FC<NavitemProps> = ({
     exact: activeOnlyWhenExact,
   });
   return (
-    <li className={match ? "navitem--active" : "navitem"}>
-      <Link
-        className={match ? "navitem__link--active" : "navitem__link"}
-        to={to}
-      >
-        {label}
-      </Link>
-    </li>
+    <Link className={match ? "navitem__link--active" : "navitem__link"} to={to}>
+      <li className={match ? "navitem--active" : "navitem"}>{label}</li>
+    </Link>
   );
 };

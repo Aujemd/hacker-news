@@ -32,7 +32,6 @@ export const useData = (framework: string, page: number = 0) => {
     try {
       const { data, count } = await getData(framework, page);
       const cleanResponse = formatData(data);
-      console.log(cleanResponse, "-------LO QUE LE LLEGA AL HOOK-------------");
 
       setData((prevData) => {
         return [...prevData, ...cleanResponse];
