@@ -91,7 +91,7 @@ export const Index: FC = () => {
           }
         })}
         {loading && <Loader />}
-        {error && <p>Something come bad, try later</p>}
+        {error && <p className="error">Something come bad, try later</p>}
       </CommonContainer>
     </>
   );
