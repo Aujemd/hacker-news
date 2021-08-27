@@ -5,6 +5,7 @@ export const FilterSelectStyles = {
     ...provided,
     padding: 0,
     margin: 0,
+    overflow: "hidden",
   }),
 
   option: (provided: any, state: { isSelected: any }) => ({
