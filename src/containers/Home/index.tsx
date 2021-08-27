@@ -48,10 +48,14 @@ export const Index: FC = () => {
 
   //Lifecycle
   useEffect(() => {
-    if (data.length === 0) {
+    if (data.length === 0 && !loading) {
       setPage((prevPage) => prevPage + 1);
     }
-  }, [data]);
+  }, [data, loading]);
+
+  useEffect(() => {
+    setPage((prevPage) => 0);
+  }, [savedFilter]);
 
   return (
     <>

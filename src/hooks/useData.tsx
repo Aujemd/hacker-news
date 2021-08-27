@@ -19,7 +19,7 @@ export type Post = {
 export const useData = (framework: string, page: number = 0) => {
   //Local States
   const [data, setData] = useState<Array<Post>>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [hasMore, setHasMore] = useState<boolean>(false);
 
@@ -32,6 +32,7 @@ export const useData = (framework: string, page: number = 0) => {
     try {
       const { data, count } = await getData(framework, page);
       const cleanResponse = formatData(data);
+      console.log(cleanResponse, "-------LO QUE LE LLEGA AL HOOK-------------");
 
       setData((prevData) => {
         return [...prevData, ...cleanResponse];
@@ -48,7 +49,9 @@ export const useData = (framework: string, page: number = 0) => {
 
   //Component livecycle
   useEffect(() => {
-    setData([]);
+    setData((prevData) => {
+      return [];
+    });
   }, [framework]);
 
   useEffect(() => {
