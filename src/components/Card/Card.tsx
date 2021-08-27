@@ -7,16 +7,10 @@ import { Like } from "../Like/Like";
 //Styles
 import "./styles.scss";
 
-//Context
-import { useApplicationContext } from "../../context/ApplicationContext";
-
 //Types
 import { Post } from "../../hooks/useData";
 
 export const Card = (post: Post) => {
-  //Local states
-  const { removeFave } = useApplicationContext();
-
   const { created_at, author, story_title, story_url } = post;
 
   const timeAgo = new TimeAgo("en-US");
@@ -28,7 +22,6 @@ export const Card = (post: Post) => {
         target="_blank"
         rel="noreferrer"
         className="card__text__container"
-        onClick={() => removeFave(post)}
       >
         <div className="card__timeago__container">
           <img

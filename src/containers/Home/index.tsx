@@ -16,8 +16,6 @@ import { useData } from "../../hooks/useData";
 //Context
 import { useApplicationContext } from "../../context/ApplicationContext";
 
-//Utils
-import { ID } from "../../utils/Common";
 export const Index: FC = () => {
   //Local states
   const { savedFilter } = useApplicationContext();
@@ -65,7 +63,11 @@ export const Index: FC = () => {
           const { objectID, author, story_url, story_title, created_at } = post;
           if (data.length === index + 1) {
             return (
-              <span ref={lastPostElementRef} key={ID()} className="card--last">
+              <span
+                ref={lastPostElementRef}
+                key={objectID + index}
+                className="card--last"
+              >
                 <Card
                   author={author}
                   story_url={story_url}
@@ -78,7 +80,7 @@ export const Index: FC = () => {
           } else {
             return (
               <Card
-                key={ID()}
+                key={objectID + index}
                 author={author}
                 story_url={story_url}
                 story_title={story_title}

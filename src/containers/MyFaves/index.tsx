@@ -11,9 +11,6 @@ import "./styles.scss";
 //Context
 import { useApplicationContext } from "../../context/ApplicationContext";
 
-//utils
-import { ID } from "../../utils/Common";
-
 export const Index: FC = () => {
   //Context State
   const { savedFaves } = useApplicationContext();
@@ -21,18 +18,19 @@ export const Index: FC = () => {
   return (
     <>
       <CommonContainer className="commonContainer myFaves__container">
-        {savedFaves.map(
-          ({ objectID, author, story_url, story_title, created_at }) => (
+        {savedFaves.map((post, index) => {
+          const { objectID, author, story_url, story_title, created_at } = post;
+          return (
             <Card
-              key={ID()}
+              key={objectID + index}
               author={author}
               story_url={story_url}
               story_title={story_title}
               created_at={created_at}
               objectID={objectID}
             />
-          )
-        )}
+          );
+        })}
       </CommonContainer>
     </>
   );
