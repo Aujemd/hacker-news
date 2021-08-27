@@ -48,13 +48,13 @@
 
   &__text {
     &__container {
+      padding: 22px 0 22px 26px;
       flex-grow: 100;
       text-decoration: none;
       color: #6b6b6b;
       display: flex;
       flex-wrap: wrap;
       width: 440px;
-      margin: auto 0 auto 26px;
       @media screen and (max-width: 767px) {
         margin: 0;
         width: 90%;
