@@ -28,7 +28,7 @@ export const useData = (framework: string, page: number = 0) => {
    * * Function to request from backend the data
    */
   const fetchData = async () => {
-    setLoading(true);
+    setError(false);
     try {
       const { data, count } = await getData(framework, page);
       const cleanResponse = formatData(data);
@@ -39,6 +39,7 @@ export const useData = (framework: string, page: number = 0) => {
       setHasMore(count);
     } catch (error) {
       setError(true);
+      setLoading(false);
     }
 
     setLoading(false);

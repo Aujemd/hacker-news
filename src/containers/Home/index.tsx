@@ -22,7 +22,7 @@ export const Index: FC = () => {
   //Local states
   const { savedFilter } = useApplicationContext();
   const [page, setPage] = useState<number>(0);
-  const { data, hasMore, loading } = useData(savedFilter, page);
+  const { data, hasMore, loading, error } = useData(savedFilter, page);
   const observer = useRef(null) as any;
   const lastPostElementRef = useCallback(
     (node): void => {
@@ -48,10 +48,10 @@ export const Index: FC = () => {
 
   //Lifecycle
   useEffect(() => {
-    if (data.length === 0 && !loading) {
+    if (data.length === 0 && !loading && !error) {
       setPage((prevPage) => prevPage + 1);
     }
-  }, [data, loading]);
+  }, [data, loading, error]);
 
   useEffect(() => {
     setPage((prevPage) => 0);
@@ -89,6 +89,7 @@ export const Index: FC = () => {
           }
         })}
         {loading && <Loader />}
+        {error && <p>Something come bad, try later</p>}
       </CommonContainer>
     </>
   );
